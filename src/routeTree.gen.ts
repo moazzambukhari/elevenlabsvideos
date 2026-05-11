@@ -12,7 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardLibraryRouteImport } from './routes/dashboard.library'
+import { Route as DashboardGenerateRouteImport } from './routes/dashboard.generate'
+import { Route as DashboardConversationsRouteImport } from './routes/dashboard.conversations'
+import { Route as DashboardCloneRouteImport } from './routes/dashboard.clone'
+import { Route as DashboardBillingRouteImport } from './routes/dashboard.billing'
+import { Route as DashboardApiKeysRouteImport } from './routes/dashboard.api-keys'
+import { Route as DashboardAgentsRouteImport } from './routes/dashboard.agents'
 
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
@@ -29,41 +39,163 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardLibraryRoute = DashboardLibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardGenerateRoute = DashboardGenerateRouteImport.update({
+  id: '/generate',
+  path: '/generate',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardConversationsRoute = DashboardConversationsRouteImport.update({
+  id: '/conversations',
+  path: '/conversations',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCloneRoute = DashboardCloneRouteImport.update({
+  id: '/clone',
+  path: '/clone',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardBillingRoute = DashboardBillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardApiKeysRoute = DashboardApiKeysRouteImport.update({
+  id: '/api-keys',
+  path: '/api-keys',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAgentsRoute = DashboardAgentsRouteImport.update({
+  id: '/agents',
+  path: '/agents',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/dashboard/agents': typeof DashboardAgentsRoute
+  '/dashboard/api-keys': typeof DashboardApiKeysRoute
+  '/dashboard/billing': typeof DashboardBillingRoute
+  '/dashboard/clone': typeof DashboardCloneRoute
+  '/dashboard/conversations': typeof DashboardConversationsRoute
+  '/dashboard/generate': typeof DashboardGenerateRoute
+  '/dashboard/library': typeof DashboardLibraryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/dashboard/agents': typeof DashboardAgentsRoute
+  '/dashboard/api-keys': typeof DashboardApiKeysRoute
+  '/dashboard/billing': typeof DashboardBillingRoute
+  '/dashboard/clone': typeof DashboardCloneRoute
+  '/dashboard/conversations': typeof DashboardConversationsRoute
+  '/dashboard/generate': typeof DashboardGenerateRoute
+  '/dashboard/library': typeof DashboardLibraryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/dashboard/agents': typeof DashboardAgentsRoute
+  '/dashboard/api-keys': typeof DashboardApiKeysRoute
+  '/dashboard/billing': typeof DashboardBillingRoute
+  '/dashboard/clone': typeof DashboardCloneRoute
+  '/dashboard/conversations': typeof DashboardConversationsRoute
+  '/dashboard/generate': typeof DashboardGenerateRoute
+  '/dashboard/library': typeof DashboardLibraryRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/forgot-password' | '/login' | '/register'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/forgot-password'
+    | '/login'
+    | '/register'
+    | '/dashboard/agents'
+    | '/dashboard/api-keys'
+    | '/dashboard/billing'
+    | '/dashboard/clone'
+    | '/dashboard/conversations'
+    | '/dashboard/generate'
+    | '/dashboard/library'
+    | '/dashboard/settings'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/forgot-password' | '/login' | '/register'
-  id: '__root__' | '/' | '/forgot-password' | '/login' | '/register'
+  to:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/register'
+    | '/dashboard/agents'
+    | '/dashboard/api-keys'
+    | '/dashboard/billing'
+    | '/dashboard/clone'
+    | '/dashboard/conversations'
+    | '/dashboard/generate'
+    | '/dashboard/library'
+    | '/dashboard/settings'
+    | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/forgot-password'
+    | '/login'
+    | '/register'
+    | '/dashboard/agents'
+    | '/dashboard/api-keys'
+    | '/dashboard/billing'
+    | '/dashboard/clone'
+    | '/dashboard/conversations'
+    | '/dashboard/generate'
+    | '/dashboard/library'
+    | '/dashboard/settings'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
@@ -92,6 +224,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -99,11 +238,103 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/library': {
+      id: '/dashboard/library'
+      path: '/library'
+      fullPath: '/dashboard/library'
+      preLoaderRoute: typeof DashboardLibraryRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/generate': {
+      id: '/dashboard/generate'
+      path: '/generate'
+      fullPath: '/dashboard/generate'
+      preLoaderRoute: typeof DashboardGenerateRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/conversations': {
+      id: '/dashboard/conversations'
+      path: '/conversations'
+      fullPath: '/dashboard/conversations'
+      preLoaderRoute: typeof DashboardConversationsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/clone': {
+      id: '/dashboard/clone'
+      path: '/clone'
+      fullPath: '/dashboard/clone'
+      preLoaderRoute: typeof DashboardCloneRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/billing': {
+      id: '/dashboard/billing'
+      path: '/billing'
+      fullPath: '/dashboard/billing'
+      preLoaderRoute: typeof DashboardBillingRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/api-keys': {
+      id: '/dashboard/api-keys'
+      path: '/api-keys'
+      fullPath: '/dashboard/api-keys'
+      preLoaderRoute: typeof DashboardApiKeysRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/agents': {
+      id: '/dashboard/agents'
+      path: '/agents'
+      fullPath: '/dashboard/agents'
+      preLoaderRoute: typeof DashboardAgentsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardAgentsRoute: typeof DashboardAgentsRoute
+  DashboardApiKeysRoute: typeof DashboardApiKeysRoute
+  DashboardBillingRoute: typeof DashboardBillingRoute
+  DashboardCloneRoute: typeof DashboardCloneRoute
+  DashboardConversationsRoute: typeof DashboardConversationsRoute
+  DashboardGenerateRoute: typeof DashboardGenerateRoute
+  DashboardLibraryRoute: typeof DashboardLibraryRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAgentsRoute: DashboardAgentsRoute,
+  DashboardApiKeysRoute: DashboardApiKeysRoute,
+  DashboardBillingRoute: DashboardBillingRoute,
+  DashboardCloneRoute: DashboardCloneRoute,
+  DashboardConversationsRoute: DashboardConversationsRoute,
+  DashboardGenerateRoute: DashboardGenerateRoute,
+  DashboardLibraryRoute: DashboardLibraryRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
